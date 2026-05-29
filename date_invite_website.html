@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Date Invite 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --pink:#ff5c8a;
+  --pinkDark:#ff3f75;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#fff7fa,#fff0f5);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  padding:20px;
+}
+
+.hearts{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.hearts span{
+  position:absolute;
+  bottom:-50px;
+  color:#ffb3c7;
+  animation:float 10s linear infinite;
+  opacity:.5;
+}
+
+.hearts span:nth-child(1){left:10%;font-size:18px;animation-duration:8s;}
+.hearts span:nth-child(2){left:25%;font-size:24px;animation-duration:12s;}
+.hearts span:nth-child(3){left:40%;font-size:20px;animation-duration:10s;}
+.hearts span:nth-child(4){left:60%;font-size:28px;animation-duration:13s;}
+.hearts span:nth-child(5){left:80%;font-size:18px;animation-duration:9s;}
+
+@keyframes float{
+  0%{transform:translateY(0) rotate(0deg);opacity:0;}
+  20%{opacity:.5;}
+  100%{transform:translateY(-120vh) rotate(360deg);opacity:0;}
+}
+
+.container{
+  width:100%;
+  max-width:430px;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(14px);
+  border-radius:30px;
+  padding:30px 24px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 15px 50px rgba(255,92,138,.15);
+}
+
+.progress{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin-bottom:25px;
+}
+
+.progress span{
+  color:#ddd;
+  font-size:18px;
+  transition:.3s;
+}
+
+.progress span.active{
+  color:var(--pink);
+  transform:scale(1.15);
+}
+
+.screen{
+  display:none;
+  animation:fade .4s ease;
+}
+
+.screen.active{
+  display:block;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.center{
+  text-align:center;
+}
+
+.emoji{
+  font-size:65px;
+  margin-bottom:15px;
+}
+
+h1{
+  color:var(--pinkDark);
+  font-size:2rem;
+  line-height:1.2;
+  margin-bottom:15px;
+}
+
+p{
+  color:#777;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+.btn-wrap{
+  position:relative;
+  width:100%;
+  height:140px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+button{
+  border:none;
+  cursor:pointer;
+  border-radius:999px;
+  padding:14px 28px;
+  font-size:1rem;
+  font-weight:600;
+  transition:.25s;
+  font-family:'Poppins',sans-serif;
+}
+
+.primary{
+  background:linear-gradient(135deg,var(--pink),var(--pinkDark));
+  color:white;
+  box-shadow:0 10px 25px rgba(255,92,138,.25);
+}
+
+.secondary{
+  background:#f2f2f2;
+  color:#777;
+  position:absolute;
+  right:20px;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:10;
+  user-select:none;
+}
+
+.group{
+  margin-bottom:18px;
+}
+
+label{
+  display:block;
+  margin-bottom:8px;
+  font-size:.9rem;
+  font-weight:600;
+  color:#555;
+}
+
+input,select{
+  width:100%;
+  padding:15px;
+  border-radius:16px;
+  border:2px solid #eee;
+  background:#fafafa;
+  outline:none;
+  font-size:1rem;
+  font-family:inherit;
+}
+
+.food-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+.food{
+  background:#fafafa;
+  border:2px solid #f0f0f0;
+  border-radius:18px;
+  padding:14px 8px;
+  text-align:center;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.food.selected{
+  border-color:var(--pink);
+  background:#fff0f5;
+}
+
+.food .icon{
+  font-size:2rem;
+}
+
+.food .name{
+  margin-top:6px;
+  font-size:.85rem;
+  font-weight:600;
+}
+
+.final-card{
+  background:#fff8fb;
+  border:2px dashed #ffc1d1;
+  border-radius:20px;
+  padding:18px;
+  margin:20px 0;
+}
+
+.row{
+  display:flex;
+  gap:14px;
+  margin-bottom:18px;
+}
+
+.big{
+  font-size:1.6rem;
+}
+
+.small{
+  font-size:.72rem;
+  letter-spacing:1px;
+  color:#999;
+  text-transform:uppercase;
+  font-weight:600;
+}
+
+.value{
+  margin-top:4px;
+  font-weight:600;
+  color:#333;
+}
+
+.note{
+  text-align:center;
+  color:#999;
+  font-size:.82rem;
+  line-height:1.5;
+  font-style:italic;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hearts">
+  <span>❤</span>
+  <span>❤</span>
+  <span>❤</span>
+  <span>❤</span>
+  <span>❤</span>
+</div>
+
+<div class="container">
+
+<div class="progress">
+  <span id="p1" class="active">♥</span>
+  <span id="p2">♥</span>
+  <span id="p3">♥</span>
+  <span id="p4">♥</span>
+</div>
+
+<div class="screen active" id="screen1">
+
+<div class="center">
+
+<div class="emoji">🥺💖</div>
+
+<h1>Will you go on a date with me?</h1>
+
+<p>I could've texted this normally... but this felt way cuter 😭💕</p>
+
+<div class="btn-wrap">
+
+<button class="primary" onclick="next(2)">
+YES 💕
+</button>
+
+<button class="secondary" id="noBtn"
+onmouseenter="moveButton()"
+ontouchstart="moveButton()">
+no 🙈
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="screen" id="screen2">
+<div class="center">
+<div class="emoji">🎉</div>
+<h1>WAIT WHAT 😭</h1>
+<p>okay now I'm nervous...</p>
+
+<button class="primary" style="width:100%;" onclick="next(3)">
+continue ✨
+</button>
+
+</div>
+</div>
+
+<div class="screen" id="screen3">
+
+<h1>Pick a date 💌</h1>
+
+<div class="group">
+<label>Date</label>
+<input type="date" id="date">
+</div>
+
+<div class="group">
+<label>Time</label>
+<select id="time">
+<option value="">Choose time</option>
+<option>12:00 PM — Lunch?</option>
+<option>4:00 PM — Coffee?</option>
+<option>7:00 PM — Dinner?</option>
+<option>9:00 PM — Night drive?</option>
+</select>
+</div>
+
+<button class="primary" style="width:100%;" onclick="goFood()">
+next ➜
+</button>
+
+</div>
+
+<div class="screen" id="screen4">
+
+<div class="center">
+<h1>What should we eat? 🍽️</h1>
+<p>Choose your favorites 👀</p>
+</div>
+
+<div class="food-grid">
+
+<div class="food" onclick="toggleFood(this,'Pizza')">
+<div class="icon">🍕</div>
+<div class="name">Pizza</div>
+</div>
+
+<div class="food" onclick="toggleFood(this,'Burger')">
+<div class="icon">🍔</div>
+<div class="name">Burger</div>
+</div>
+
+<div class="food" onclick="toggleFood(this,'Coffee')">
+<div class="icon">☕</div>
+<div class="name">Coffee</div>
+</div>
+
+<div class="food" onclick="toggleFood(this,'Ice Cream')">
+<div class="icon">🍨</div>
+<div class="name">Ice Cream</div>
+</div>
+
+</div>
+
+<button class="primary" style="width:100%;" onclick="goFinal()">
+finalize 💖
+</button>
+
+</div>
+
+<div class="screen" id="screen5">
+
+<div class="center">
+<div class="emoji">💌</div>
+<h1>It's a date 💖</h1>
+<p id="tagline"></p>
+</div>
+
+<div class="final-card">
+
+<div class="row">
+<div class="big">📅</div>
+<div>
+<div class="small">WHEN</div>
+<div class="value" id="finalDate"></div>
+</div>
+</div>
+
+<div class="row">
+<div class="big">🍽️</div>
+<div>
+<div class="small">FOOD</div>
+<div class="value" id="finalFood"></div>
+</div>
+</div>
+
+</div>
+
+<div class="note">
+p.s. I made a whole website instead of sending a normal message 😭💕
+</div>
+
+<button class="primary" style="width:100%; margin-top:20px;" onclick="openInstaDM()">
+Message Me on Instagram 💖
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+let foods = [];
+let selectedDate = "";
+let selectedTime = "";
+
+window.onload = () => {
+  let today = new Date().toISOString().split("T")[0];
+  document.getElementById("date").min = today;
+}
+
+function next(num){
+
+  document.querySelectorAll(".screen")
+  .forEach(el => el.classList.remove("active"));
+
+  document.getElementById("screen"+num)
+  .classList.add("active");
+
+  for(let i=1;i<=4;i++){
+
+    if(num >= i+1){
+      document.getElementById("p"+i).classList.add("active");
+    }else{
+      document.getElementById("p"+i).classList.remove("active");
+    }
+
+  }
+
+  if(num === 5){
+    renderFinal();
+  }
+
+}
+
+function moveButton(){
+
+  const btn = document.getElementById("noBtn");
+  const container = document.querySelector(".container");
+
+  const maxX = container.clientWidth - btn.clientWidth - 40;
+  const maxY = container.clientHeight - btn.clientHeight - 40;
+
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
+
+  btn.style.left = randomX + "px";
+  btn.style.top = randomY + "px";
+  btn.style.transition = "all 0.18s ease";
+
+}
+
+function goFood(){
+
+  const date = document.getElementById("date").value;
+  const time = document.getElementById("time").value;
+
+  if(!date || !time){
+    alert("Please select date & time 💖");
+    return;
+  }
+
+  selectedDate = date;
+  selectedTime = time;
+
+  next(4);
+
+}
+
+function toggleFood(el,food){
+
+  el.classList.toggle("selected");
+
+  if(foods.includes(food)){
+    foods = foods.filter(f => f !== food);
+  }else{
+    foods.push(food);
+  }
+
+}
+
+function goFinal(){
+
+  if(foods.length === 0){
+    alert("Choose at least one food 😭");
+    return;
+  }
+
+  next(5);
+
+}
+
+function renderFinal(){
+
+  const options = {
+    weekday:'long',
+    month:'long',
+    day:'numeric',
+    year:'numeric'
+  };
+
+  const dateText =
+  new Date(selectedDate)
+  .toLocaleDateString('en-US',options);
+
+  document.getElementById("finalDate").innerText =
+  dateText + " at " + selectedTime;
+
+  document.getElementById("finalFood").innerText =
+  foods.join(", ");
+
+  document.getElementById("tagline").innerText =
+  "I'll pretend to act calm but internally panic 😭";
+
+}
+
+function openInstaDM(){
+
+  alert(`Hey 💖
+
+You officially accepted the date invitation 😭✨
+
+Now text me on Instagram 💌`);
+
+  window.open(
+  'https://ig.me/m/tushar_.r8',
+  '_blank'
+  );
+
+}
+
+</script>
+
+</body>
+</html>
